@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.hnust.dao.AreaDao" >
+  <resultMap id="BaseResultMap" type="com.cn.hnust.pojo.Area" >
+    <id column="Area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="Area_stuatus" property="areaStuatus" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="Area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="Area_parentid" property="areaParentid" jdbcType="INTEGER" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="Area_leval" property="areaLeval" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Area_id, Area_stuatus, create_time, update_time, create_user, Area_name, Area_parentid, 
+    update_user, Area_leval
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from area
+    where Area_id = #{areaId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from area
+    where Area_id = #{areaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.hnust.pojo.Area" >
+    insert into area (Area_id, Area_stuatus, create_time, 
+      update_time, create_user, Area_name, 
+      Area_parentid, update_user, Area_leval
+      )
+    values (#{areaId,jdbcType=INTEGER}, #{areaStuatus,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, 
+      #{areaParentid,jdbcType=INTEGER}, #{updateUser,jdbcType=VARCHAR}, #{areaLeval,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.hnust.pojo.Area" >
+    insert into area
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="areaId != null" >
+        Area_id,
+      </if>
+      <if test="areaStuatus != null" >
+        Area_stuatus,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="areaName != null" >
+        Area_name,
+      </if>
+      <if test="areaParentid != null" >
+        Area_parentid,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="areaLeval != null" >
+        Area_leval,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="areaStuatus != null" >
+        #{areaStuatus,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaParentid != null" >
+        #{areaParentid,jdbcType=INTEGER},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="areaLeval != null" >
+        #{areaLeval,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.hnust.pojo.Area" >
+    update area
+    <set >
+      <if test="areaStuatus != null" >
+        Area_stuatus = #{areaStuatus,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        Area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaParentid != null" >
+        Area_parentid = #{areaParentid,jdbcType=INTEGER},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="areaLeval != null" >
+        Area_leval = #{areaLeval,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Area_id = #{areaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.hnust.pojo.Area" >
+    update area
+    set Area_stuatus = #{areaStuatus,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      Area_name = #{areaName,jdbcType=VARCHAR},
+      Area_parentid = #{areaParentid,jdbcType=INTEGER},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      Area_leval = #{areaLeval,jdbcType=INTEGER}
+    where Area_id = #{areaId,jdbcType=INTEGER}
+  </update>
+</mapper>

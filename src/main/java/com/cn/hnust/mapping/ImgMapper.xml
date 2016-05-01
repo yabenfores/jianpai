@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.hnust.dao.ImgDao" >
+  <resultMap id="BaseResultMap" type="com.cn.hnust.pojo.Img" >
+    <id column="Img_id" property="imgId" jdbcType="INTEGER" />
+    <result column="Img_url" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="Img_score" property="imgScore" jdbcType="REAL" />
+    <result column="Img_updatetime" property="imgUpdatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Img_id, Img_url, Img_score, Img_updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from img
+    where Img_id = #{imgId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from img
+    where Img_id = #{imgId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.hnust.pojo.Img" >
+    insert into img (Img_id, Img_url, Img_score, 
+      Img_updatetime)
+    values (#{imgId,jdbcType=INTEGER}, #{imgUrl,jdbcType=VARCHAR}, #{imgScore,jdbcType=REAL}, 
+      #{imgUpdatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.hnust.pojo.Img" >
+    insert into img
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="imgId != null" >
+        Img_id,
+      </if>
+      <if test="imgUrl != null" >
+        Img_url,
+      </if>
+      <if test="imgScore != null" >
+        Img_score,
+      </if>
+      <if test="imgUpdatetime != null" >
+        Img_updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="imgId != null" >
+        #{imgId,jdbcType=INTEGER},
+      </if>
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgScore != null" >
+        #{imgScore,jdbcType=REAL},
+      </if>
+      <if test="imgUpdatetime != null" >
+        #{imgUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.hnust.pojo.Img" >
+    update img
+    <set >
+      <if test="imgUrl != null" >
+        Img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgScore != null" >
+        Img_score = #{imgScore,jdbcType=REAL},
+      </if>
+      <if test="imgUpdatetime != null" >
+        Img_updatetime = #{imgUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where Img_id = #{imgId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.hnust.pojo.Img" >
+    update img
+    set Img_url = #{imgUrl,jdbcType=VARCHAR},
+      Img_score = #{imgScore,jdbcType=REAL},
+      Img_updatetime = #{imgUpdatetime,jdbcType=TIMESTAMP}
+    where Img_id = #{imgId,jdbcType=INTEGER}
+  </update>
+</mapper>
